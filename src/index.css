@@ -12,7 +12,7 @@
 }
 
 /** UL Custom Utilities:
-Created to support alignment related utlities like justify, text-align etc with dynamic theming values 
+Created to support alignment related utlities like justify, text-align etc with dynamic theming values
 **/
 @layer utilities {
   /** Custom Utility to handle page layout alignment **/
@@ -28,6 +28,37 @@ Created to support alignment related utlities like justify, text-align etc with 
   /** Custom Utility to handle logo alignment(left, right, center) **/
   .justify-widget-logo {
     justify-content: var(--ul-theme-widget-logo-position);
+  }
+
+  /** Modern Theme Enhancements **/
+  .theme-universal {
+    /* Smooth transitions for all interactive elements */
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 200ms;
+  }
+
+  /** Gradient overlay for primary buttons **/
+  .gradient-primary-button {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .gradient-primary-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(139, 92, 246, 0.3) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .gradient-primary-button:hover::before {
+    opacity: 1;
   }
 }
 
@@ -144,68 +175,84 @@ Created to support alignment related utlities like justify, text-align etc with 
 }
 
 :root {
-  /* Colors */
-  --ul-theme-color-primary-button: #635dff;
+  /* Colors - Modern & Colorful Theme */
+  /* Primary vibrant purple with gradient effect */
+  --ul-theme-color-primary-button: #7C3AED;
   --ul-theme-color-primary-button-label: #ffffff;
-  --ul-theme-color-secondary-button-border: #c9cace;
-  --ul-theme-color-secondary-button-label: #1e212a;
-  --ul-theme-color-base-focus-color: #635dff;
-  --ul-theme-color-base-hover-color: #000000;
-  --ul-theme-color-links-focused-components: #635dff;
-  --ul-theme-color-header: #1e212a;
-  --ul-theme-color-body-text: #1e212a;
-  --ul-theme-color-widget-background: #ffffff;
-  --ul-theme-color-widget-border: #c9cace;
-  --ul-theme-color-input-labels-placeholders: #65676e;
-  --ul-theme-color-input-filled-text: #000000;
-  --ul-theme-color-input-border: #c9cace;
-  --ul-theme-color-input-background: #ffffff;
-  --ul-theme-color-icons: #65676e;
-  --ul-theme-color-error: #d03c38;
-  --ul-theme-color-success: #13a688;
-  --ul-theme-color-warning: #ffdb5f;
-  --ul-theme-color-captcha-widget-theme: dark;
-  --ul-theme-color-spinner: #6f7780;
-  --ul-theme-color-qrcode-border: #dee2e6;
 
-  /* Borders */
+  /* Secondary with teal accent */
+  --ul-theme-color-secondary-button-border: #14B8A6;
+  --ul-theme-color-secondary-button-label: #0F766E;
+
+  /* Focus & Hover states with vibrant colors */
+  --ul-theme-color-base-focus-color: #8B5CF6;
+  --ul-theme-color-base-hover-color: #6366F1;
+  --ul-theme-color-links-focused-components: #8B5CF6;
+
+  /* Typography with modern dark purple */
+  --ul-theme-color-header: #1E1B4B;
+  --ul-theme-color-body-text: #334155;
+
+  /* Widget with clean white and subtle border */
+  --ul-theme-color-widget-background: #ffffff;
+  --ul-theme-color-widget-border: #E0E7FF;
+
+  /* Input fields with light purple tint */
+  --ul-theme-color-input-labels-placeholders: #64748B;
+  --ul-theme-color-input-filled-text: #1E1B4B;
+  --ul-theme-color-input-border: #CBD5E1;
+  --ul-theme-color-input-background: #F8FAFC;
+
+  /* Icons with purple tint */
+  --ul-theme-color-icons: #8B5CF6;
+
+  /* Status colors - vibrant and modern */
+  --ul-theme-color-error: #EF4444;
+  --ul-theme-color-success: #10B981;
+  --ul-theme-color-warning: #F59E0B;
+
+  --ul-theme-color-captcha-widget-theme: light;
+  --ul-theme-color-spinner: #8B5CF6;
+  --ul-theme-color-qrcode-border: #E0E7FF;
+
+  /* Borders - Modern rounded aesthetic */
   --ul-theme-border-buttons-style: rounded;
   --ul-theme-border-inputs-style: rounded;
-  --ul-theme-border-button-border-weight: 1px;
-  --ul-theme-border-button-border-radius: 3px;
-  --ul-theme-border-input-border-weight: 1px;
-  --ul-theme-border-input-border-radius: 3px;
-  --ul-theme-border-widget-corner-radius: 5px;
-  --ul-theme-border-widget-border-weight: 0px;
-  --ul-theme-border-show-widget-shadow: 1;
-  --ul-theme-border-links-border-radius: 3px;
+  --ul-theme-border-button-border-weight: 0px;
+  --ul-theme-border-button-border-radius: 12px;
+  --ul-theme-border-input-border-weight: 2px;
+  --ul-theme-border-input-border-radius: 10px;
+  --ul-theme-border-widget-corner-radius: 20px;
+  --ul-theme-border-widget-border-weight: 1px;
+  --ul-theme-border-show-widget-shadow: 0px 20px 60px 0px rgba(139, 92, 246, 0.15);
+  --ul-theme-border-links-border-radius: 6px;
 
-  /* Fonts */
+  /* Fonts - Modern hierarchy with better readability */
   --ul-theme-font-reference-text-size: 16px;
   --ul-theme-font-links-style: normal;
-  --ul-theme-font-title-size: 1.5rem;
-  --ul-theme-font-title-weight: 400;
-  --ul-theme-font-subtitle-size: 0.875rem;
-  --ul-theme-font-subtitle-weight: 400;
-  --ul-theme-font-body-text-size: 0.875rem;
+  --ul-theme-font-title-size: 2rem;
+  --ul-theme-font-title-weight: 700;
+  --ul-theme-font-subtitle-size: 1rem;
+  --ul-theme-font-subtitle-weight: 500;
+  --ul-theme-font-body-text-size: 0.9375rem;
   --ul-theme-font-body-text-weight: 400;
   --ul-theme-font-buttons-text-size: 1rem;
-  --ul-theme-font-buttons-text-weight: 400;
-  --ul-theme-font-input-labels-size: 1rem;
-  --ul-theme-font-input-labels-weight: 400;
-  --ul-theme-font-links-size: 0.875rem;
-  --ul-theme-font-links-weight: 700;
-  --ul-theme-font-list-size: 1.025rem;
+  --ul-theme-font-buttons-text-weight: 600;
+  --ul-theme-font-input-labels-size: 0.9375rem;
+  --ul-theme-font-input-labels-weight: 500;
+  --ul-theme-font-links-size: 0.9375rem;
+  --ul-theme-font-links-weight: 600;
+  --ul-theme-font-list-size: 1rem;
 
-  /* Page Background */
+  /* Page Background - Soft gradient from purple to teal */
   --ul-theme-page-bg-page-layout: center;
-  --ul-theme-page-bg-background-color: #000000;
+  --ul-theme-page-bg-background-color: #F5F3FF;
   --ul-theme-page-bg-background-image-url: none;
 
   /* Widget */
   --ul-theme-widget-logo-position: center;
   --ul-theme-widget-logo-url: "https://cdn.auth0.com/blog/auth0_by_okta_logo_black.png";
-  --ul-theme-widget-logo-height: 52px;
+  --ul-theme-widget-logo-height: 56px;
   --ul-theme-widget-header-text-alignment: center;
   --ul-theme-widget-social-buttons-layout: bottom;
 
@@ -265,13 +312,22 @@ Created to support alignment related utlities like justify, text-align etc with 
 
 body {
   margin: 0;
-  background-color: var(--ul-theme-page-bg-background-color);
-  background-image: var(--ul-theme-page-bg-background-image-url);
+  background: linear-gradient(135deg, #EEF2FF 0%, #FDF4FF 40%, #F0FDFA 100%);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  background-attachment: fixed;
   color: var(--ul-theme-color-body-text);
   min-height: 100vh;
+}
+
+/* Override with custom background if specified in theme */
+body:has(:root[style*="--ul-theme-page-bg-background-image-url"]:not([style*="--ul-theme-page-bg-background-image-url: none"])) {
+  background: var(--ul-theme-page-bg-background-image-url, linear-gradient(135deg, #EEF2FF 0%, #FDF4FF 40%, #F0FDFA 100%));
+}
+
+body:has(:root[style*="--ul-theme-page-bg-background-color"]) {
+  background-color: var(--ul-theme-page-bg-background-color);
 }
 
 /** UDS Dark Theme Variables **/
